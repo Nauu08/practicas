@@ -1,3 +1,5 @@
+//DNI 24422696P Mario Arnau Sabater
+
 #include <iostream>
 #include <vector>
 #include <cstdlib>
@@ -73,24 +75,107 @@ void showMainMenu(){
 }
 
 void editProject(Project &toDoList){
+    
+    cout<<"Enter Project Name: "<<endl;
+    getline(cin,toDoList.name);
+    
+    do{
+
+        error(ERR_EMPTY);
+
+        cout<<"\nEnter a Correct Project Name: "<<endl;
+        getline(cin,toDoList.name);
+
+    }while(toDoList.name.empty()==true);
+
+    cout<<"Enter Description Name: "<<endl;
+    getline(cin,toDoList.description);
+
 }
 
 void addList(Project &toDoList){
+    List nuevaLista;
+    
+    cout<<"Enter List Name: "<<endl;
+    getline(cin,nuevaLista.name);
+
+    do{
+      
+      error(ERR_EMPTY);
+      
+      cout<<"\nEnter a Correct List Name: "<<endl;
+      getline(cin,nuevaLista.name);
+      
+    }while(nuevaLista.name.empty());
+    
+    toDoList.lists.push_back(nuevaLista);
+    //no se comprobar si la lista ya está existente o no.
 }
 
 void deleteList(Project &toDoList){
+    List nuevaLista;
+
+    cout<<"Enter List Name: "<<endl;
+    getline(cin,nuevaLista.name);
+
+    do{
+      
+      error(ERR_EMPTY);
+      
+      cout<<"\nEnter a Correct List Name: "<<endl;
+      getline(cin,nuevaLista.name);
+      
+    }while(nuevaLista.name.empty());
+    //no se como comprobar si la lista está o no.
 }
 
 void addTask(Project &toDoList){
+  List nuevaLista;
+  Task nuevoTask;
+
+  cout<<"Enter List Name: "<<endl;
+  getline(cin,nuevaLista.name);
+
+  do{
+    
+    error(ERR_EMPTY);
+    
+    cout<<"\nEnter a Correct List Name: "<<endl;
+    getline(cin,nuevaLista.name);
+    
+  }while(nuevaLista.name.empty());
+  //no se comprobar si hay una lista con el mismo nombre.
+
+  cout<<"Enter New Task: "<<endl;
+  getline(cin,nuevoTask.name);
+
+  cout<<"Enter deadline: (d/m/aaaa)"<<endl;
+  
 }
 
 void deleteTask(Project &toDoList){
+  List nuevaLista;
+  cout<<"Enter List Name: "<<endl;
+  getline(cin,nuevaLista.name);
+  
+  do{
+    
+    error(ERR_EMPTY);
+    
+    cout<<"\nEnter a Correct List Name: "<<endl;
+    getline(cin,nuevaLista.name);
+    
+  }while(nuevaLista.name.empty());
+
+  
 }
 
 void toggleTask(Project &toDoList){
+    
 }
 
 void report(const Project &toDoList){
+    
 }
 
 int main(){
