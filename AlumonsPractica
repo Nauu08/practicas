@@ -1,0 +1,82 @@
+#include <iostream> 
+using namespace std; 
+
+const int kTAMCAD = 45; 
+const int kALUMNOS = 30; 
+
+// Estructura fecha 
+typedef struct { 
+ int dia, mes, anyo; 
+} TFecha; 
+
+// Estructura ficha de alumnos 
+typedef struct { 
+char nombre[kTAMCAD]; 
+ TFecha fechaNac; 
+ TFecha fechaIngreso;
+ int notaMedia; 
+} TFichaAlumno; 
+
+// Declaración del tipo TAlumnos. Será un array de fichas de alumnos 
+typedef TFichaAlumno TAlumnos[kALUMNOS]; 
+
+// Cabecera de las funciones. 
+void leeAlumnos(TAlumnos alumnos); 
+
+//Programa principal 
+main() 
+{ 
+ // alumnos será el array de fichas de alumnos 
+ TAlumnos alumnos; 
+ 
+ leeAlumnos(alumnos); 
+} 
+
+// Función que nos permite limpiar el buffer de entrada. 
+// Lo utilizaremos después de leer un número entero, 
+// para evitar que quede el retorno de carro en el buffer. 
+void limpiarBuffer() 
+{ 
+while(cin.get() != '\n'); 
+} 
+
+// Función para leer una fecha 
+void leeFecha(TFecha &fecha) 
+{ 
+ cout << "Introduzca el día: "; 
+ cin >> fecha.dia; 
+ cout << "Introduzca el mes: "; 
+ cin >> fecha.mes; 
+ cout << "Introduzca el año: "; 
+ cin >> fecha.anyo; 
+ limpiarBuffer(); 
+} 
+
+// Función para leer la ficha de un alumno. 
+void leeFichaAlumno(TFichaAlumno &fichaAlumno) 
+{ 
+ cout << "Introduzca el nombre del alumno: "; 
+ cin.getline(fichaAlumno.nombre, kTAMCAD); 
+ 
+ cout << "Introduzca la fecha de nacimiento\n"; 
+ leeFecha(fichaAlumno.fechaNac); 
+ 
+ cout << "Introduzca la fecha de Ingreso\n"; 
+ leeFecha(fichaAlumno.fechaIngreso); 
+ 
+ cout << "Introduzca la nota del alumno: "; 
+ cin >> fichaAlumno.notaMedia; 
+ limpiarBuffer(); 
+} 
+
+// Funcion para leer los datos de todos los alumnos
+void leeAlumnos(TAlumnos alumnos) 
+{ 
+ int i; 
+ 
+ for (i= 0; i < kALUMNOS; i++)
+ { 
+ cout << "Introduzca datos del alumno " << i << "\n"; 
+ leeFichaAlumno(alumnos[i]); 
+ } 
+} 
